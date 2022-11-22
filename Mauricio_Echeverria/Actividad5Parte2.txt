@@ -1,0 +1,103 @@
+public class ActividadParte2 {
+
+
+    static int[][] numeroN = null;
+    static Scanner entrada = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        numeroN = definirTamano(numeroN);
+        System.out.println("NUMERO DE FILAS :" + numeroN.length);
+        System.out.println("NUMERO DE COLUMNAS: " + numeroN[0].length);
+
+        System.out.println(" ");
+        numeroN = ingresarValores(numeroN);
+        System.out.println(" ");
+
+        numeroN = imprimirMatriz(numeroN);
+        System.out.println();
+
+        numeroN = numeroMayor(numeroN);
+
+    }
+
+    public static int[][] definirTamano(int[][] matriz) {
+
+        int filas;
+        int columna;
+
+        do {
+            System.out.println("Ingresa el tamaño de la matriz en Filas&Columnas");
+            String datosIngresados = entrada.next();
+
+            String[] datos = datosIngresados.split("&");
+
+            filas = Integer.parseInt(datos[0]);
+            columna = Integer.parseInt(datos[1]);
+        } while (filas <= 0 && columna <= 0);
+
+        matriz = new int[filas][columna];
+        return matriz;
+
+
+    }
+
+    public static int[][] ingresarValores(int[][] matriz) {
+        Random aleatorio = new Random();
+
+        int rango = 0;
+
+        System.out.println("Ingrese el rango deseado de la matriz");
+        rango = entrada.nextInt();
+
+        for (int fila = 0; fila < matriz.length; fila++) {
+            for (int columna = 0; columna < matriz[fila].length; columna++) {
+
+                numeroN[fila][columna] = aleatorio.nextInt(rango);
+
+            }
+        }
+
+        return matriz;
+    }
+
+
+    public static int[][] imprimirMatriz(int[][] matriz) {
+
+        for (int fila = 0; fila < matriz.length; fila++) {
+            for (int columna = 0; columna < matriz[fila].length; columna++) {
+
+                System.out.print(matriz[fila][columna] + " ");
+
+            }
+            System.out.println(" ");
+        }
+
+
+        return matriz;
+    }
+
+
+    public static int[][] numeroMayor(int[][] matriz) {
+
+        int mayor = 0;
+
+        for (int fila = 0; fila < numeroN.length; fila++) {
+
+            for (int columna = 0; columna < numeroN.length; columna++) {
+
+                if (numeroN[fila][columna] > mayor) {
+                    mayor = numeroN[fila][columna];
+                }
+
+            }
+            System.out.println(" ");
+
+        }
+        System.out.println("El numero mayor es : " + mayor);
+
+        return matriz;
+    }
+
+
+}
