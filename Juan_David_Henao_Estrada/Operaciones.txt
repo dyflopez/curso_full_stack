@@ -1,0 +1,68 @@
+package operaciones;
+
+
+import java.util.Scanner;
+
+public class Operaciones {
+
+    int suma;
+    int resta;
+    int multiplicacion;
+    double division;
+
+    public int sumar(int n1, int n2) {
+        suma = n1 + n2;
+        return suma;
+
+    }
+
+    public int restar(int n1, int n2) {
+        resta = n1 - n2;
+        return resta;
+
+    }
+
+    public int multiplicar(int n1, int n2) {
+        multiplicacion = n1 * n2;
+        return multiplicacion;
+
+    }
+
+    public double dividir(int n1, int n2) {
+        division = n1 / n2;
+        return division;
+    }
+}
+
+
+package operaciones;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner t = new Scanner(System.in);
+        int n1;
+        int n2;
+
+            System.out.println("Digite primer número : " );
+            n1=t.nextInt();
+            System.out.println("Digite segundo número : ");
+            n2=t.nextInt();
+
+            Operaciones o = new Operaciones();
+
+
+        System.out.println("La suma del numero: " + n1 + " con el numero: " + n2 + " es: " + o.sumar(n1, n2));
+        System.out.println("La resta del numero: " + n1 + " con el numero: " + n2 + " es: " + o.restar(n1, n2));
+        System.out.println("La multiplicacion del numero: " + n1 + " con el numero: " + n2 + " es: " + o.multiplicar(n1, n2));
+        System.out.println("La division del numero: " + n1 + " con el numero: " + n2 + " es: " + o.dividir(n1, n2));
+
+
+
+
+    }
+
+
+}
