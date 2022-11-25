@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class Palabra {
+    Scanner entradaDatos = new Scanner(System.in);
+    String palabra;
+    String letras;
+    int contador;
+
+    public Palabra() {
+    }
+
+    public void ingresarFrase() {
+
+        System.out.println("ingrese la frase");
+        palabra = entradaDatos.nextLine();
+    }
+
+    public void recorrerPalabra() {
+
+        for (int i = 1; i < palabra.length() - 1; i++) {
+            if (Character.isLetter(palabra.charAt(i))) {
+                contador++;
+                letras += palabra.charAt(i);
+            }
+        }
+    }
+    public void numeroIntermedio(){
+        System.out.println(palabra.charAt(0) + " " + contador + " " + palabra.substring(palabra.length() - 1));
+    }
+    public void mostarcaracteresYpalabras(){
+        // cuenta cantidad de caracteres con espacios tambien
+        System.out.print("cantidad de caracteres: ");
+        System.out.println(palabra.split("\\s+||,").length);
+
+        // cuenta cantidad de palabras
+        System.out.print("cantidad de palabras: ");
+        System.out.println(palabra.split("\\s+|\n|,").length);
+
+    }
+
+}
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Palabra p =new Palabra();
+
+        p.ingresarFrase();
+
+        p.recorrerPalabra();
+
+        p.numeroIntermedio();
+
+        p.mostarcaracteresYpalabras();
+    }
+}
+
