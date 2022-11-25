@@ -1,0 +1,159 @@
+
+CAMILO GOMEZ
+
+
+import java.util.Scanner;
+
+public class Producto {
+
+    Scanner teclado = new Scanner(System.in);
+    // variables
+    private String nombre;
+    private int precio;
+    private int cantidad;
+    private double iva=0.19;
+
+    private double subTotal;
+
+    private double inpuesto;
+    private double total;
+
+
+//constructor
+    public Producto(String nombre, int precio,  int cantidad, double iva,double total,double subTotal,double inpuesto) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.iva = iva;
+        this.total = total;
+        this.subTotal= subTotal;
+        this.inpuesto=inpuesto;
+    }
+
+    public Producto() {
+    }
+
+    //get-set
+
+
+    public Scanner getTeclado() {
+        return teclado;
+    }
+
+    public void setTeclado(Scanner teclado) {
+        this.teclado = teclado;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getIva() {
+        return iva;
+    }
+
+    public void setIva(double iva) {
+        this.iva = iva;
+    }
+
+    public double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public double getInpuesto() {
+        return inpuesto;
+    }
+
+    public void setInpuesto(double inpuesto) {
+        this.inpuesto = inpuesto;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public void ingresarDatos(){
+
+        System.out.println("ingrese el nombre del producto");
+        nombre = teclado.next();
+        System.out.println("ingrese la cantidad del producto");
+        cantidad = teclado.nextInt();
+        System.out.println("ingrese el precio");
+        precio = teclado.nextInt();
+    }
+
+    public void calcularDatos(){
+
+        subTotal = precio * cantidad;
+        inpuesto = (subTotal * iva);
+        total = subTotal + inpuesto;
+    }
+
+    public void mostrarDatos(){
+
+        System.out.println("*********DATOS DE COMPRA*********");
+        System.out.println("*********************************");
+
+        System.out.println("Nombre producto: "  +nombre         );
+
+        System.out.println("precio del producto sin iva:"  +precio);
+
+        System.out.println("cantidad del producto:"  +cantidad);
+
+        System.out.println(" el valor del impusto :"+inpuesto);
+
+        System.out.println("el total de la compra es:"  +total);
+
+    }
+
+}
+
+---------------------------------------------------------------------------------------
+
+
+public class Main {
+    public static void main(String[] args) {
+            Producto P = new Producto();
+
+            P.ingresarDatos();
+            P.calcularDatos();
+            P.mostrarDatos();
+
+    }
+}
+
+
+
+
+
+
+
+
