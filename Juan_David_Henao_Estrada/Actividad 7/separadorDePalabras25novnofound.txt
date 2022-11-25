@@ -1,0 +1,149 @@
+package co.com.actividad7.semillero;
+
+import java.util.Scanner;
+
+public class Acciones {
+    int contador;
+    String palabra;
+    String letras;
+    public static void imprimirMensaje(String mensaje) {
+        System.out.println(mensaje);
+    }
+
+    public static String capturarPalabra() {
+        Scanner t = new Scanner(System.in);
+        return t.nextLine();
+    }
+
+    public static char capturarCaracter() {
+        Scanner t = new Scanner(System.in);
+        return t.next().charAt(0);
+    }
+
+    public static int recorrerPalabra() {
+        int contador=0;
+        String letras = null;
+
+        for (int i = 1; i < capturarPalabra().length() - 1; i++) {
+            if (Character.isLetter(capturarPalabra().charAt(i))) {
+                contador++;
+                letras += capturarPalabra().charAt(i);
+            }return contador;
+        }return contador;
+    }
+    public static int numeroIntermedio(){
+        int contador=0;
+        System.out.println(capturarPalabra().charAt(0) + " " + contador + " " + capturarPalabra().substring(capturarPalabra().length() - 1));
+        return contador;
+    }
+    public void mostrarcaracteresYpalabras(){
+        // cuenta cantidad de caracteres con espacios tambien
+       // System.out.print("cantidad de caracteres: ");
+        System.out.println(capturarPalabra().split("\\s+||,").length);
+
+        // cuenta cantidad de palabras
+       // System.out.print("cantidad de palabras: ");
+        System.out.println(capturarPalabra().split("\\s+|\n|,").length);
+
+    }
+
+    public void numeroIntermedios () {
+        String oracion[] = new String[Integer.parseInt(capturarPalabra())];
+        for (int i = 0; i < capturarPalabra().length(); i++) {
+            capturarPalabra().charAt(i);
+            capturarPalabra().substring(capturarPalabra().length() - 1);
+
+        }
+       // System.out.print(capturarPalabra().charAt(0) + capturarPalabra().substring(capturarPalabra().length() - 1));
+
+
+    }
+    public void mostrarPalabra(){
+       // System.out.println(capturarPalabra().charAt(0) + " " + contador + " " + capturarPalabra().substring(capturarPalabra().length() - 1));
+        String sis=(capturarPalabra().charAt(0) + " " + contador + " " + capturarPalabra().substring(capturarPalabra().length() - 1));
+
+        //System.out.println(capturarPalabra().charAt(0) + " " + contador + " " + palabra.substring(palabra.length() - 1));
+
+    }
+    public void recorrerPalabras() {
+
+        for (int i = 1; i < palabra.length() - 1; i++) {
+            if (Character.isLetter(palabra.charAt(i))) {
+                contador++;
+                letras += palabra.charAt(i);
+            }
+        }
+    }
+
+}
+
+
+______________________________________
+
+package co.com.actividad7.semillero;
+
+public class Frase {
+
+    private String palabra;
+    private char caracter;
+    public Frase() {  }
+
+    public String getPalabra() {
+        return palabra;
+    }
+
+    public void setPalabra(String palabra) {
+        this.palabra = palabra;
+    }
+
+    public char getCaracter() {
+        return caracter;
+    }
+
+    public void setCaracter(char caracter) {
+        this.caracter = caracter;
+    }
+}
+_____________________________________
+
+package co.com.actividad7.semillero;
+
+import co.com.actividad7.semillero.Acciones;
+import co.com.actividad7.semillero.Frase;
+
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.net.DatagramSocketImpl;
+
+public class Main {
+    public static void main(String[] args) {
+
+
+        Frase f =new Frase();
+        Acciones a =new Acciones();
+        Acciones.imprimirMensaje("-----------------------------------");
+        a.imprimirMensaje("Ingresar palabra u oración: ");
+        f.setPalabra(a.capturarPalabra());
+
+
+        //a.ordenarVector();
+        Acciones.imprimirMensaje("-----------------------------------");
+
+        a.imprimirMensaje("Ingrese caracter separador");
+        f.setCaracter(a.capturarCaracter());
+
+        Acciones.imprimirMensaje("-----------------------------------");
+        a.recorrerPalabras();
+
+        a.imprimirMensaje("la palabra es: " + f.getPalabra());
+        a.imprimirMensaje("El caracter es : "+ f.getCaracter());
+        Acciones.imprimirMensaje("-----------------------------------");
+       // a.imprimirMensaje("vector en orden " + Acciones.capturarPalabra());
+      //  Acciones.imprimirMensaje("es");
+       // a.repetidos();
+        //a.numeroIntermedio();
+        //a.recorrerPalabra();
+       // a.mostrarPalabra();
+
+
+    }
+}
