@@ -1,0 +1,49 @@
+
+CAMILO GOMEZ
+
+
+
+public class Usuario {
+    Scanner entradaDatos = new Scanner(System.in);
+    String palabra;
+    String letras="";
+    int contador;
+
+    public void ingresaFrase() {
+        System.out.println("ingrese la frase");
+        palabra = entradaDatos.nextLine();
+    }
+
+    public void mostrarFrase(){
+        for (int i = 0; i < palabra.length(); i++) {
+        }
+        System.out.println(palabra.charAt(0)+palabra.substring(palabra.length()-1 ) );
+
+        for (int i = 1; i < palabra.length()-1; i++) {
+            if (Character.isLetter(palabra.charAt(i))){
+                contador++;
+                letras+=palabra.charAt(i);
+            }
+        }
+        //System.out.println(contador);
+
+
+
+        System.out.println( palabra.charAt(0)+""+contador+palabra.substring(palabra.length()-1 ) );
+    }
+
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        Usuario usuario = new Usuario();
+
+usuario.ingresaFrase();
+usuario.mostrarFrase();
+
+    }
+}
