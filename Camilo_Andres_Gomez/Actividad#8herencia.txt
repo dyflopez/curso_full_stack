@@ -1,0 +1,175 @@
+CAMILO GOMEZ
+
+
+public abstract class Vehiculos {
+
+    private String marca;
+    private int modelo;
+    private String color;
+
+    private int pasajeros;
+
+    public Vehiculos(String marca, int modelo, String color, int pasajeros) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.color = color;
+        this.pasajeros = pasajeros;
+    }
+
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public int getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(int modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getPasajeros() {
+        return pasajeros;
+    }
+
+    public void setPasajeros(int pasajeros) {
+        this.pasajeros = pasajeros;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehiculos{" +
+                "marca='" + marca + '\'' +
+                ", modelo=" + modelo +
+                ", color='" + color + '\'' +
+                ", pasajeros=" + pasajeros +
+                '}';
+    }
+
+    public abstract void velocidadKm();
+}
+-----------------------------------------------------------------------------------------------------------
+
+
+
+
+public class Carro extends Vehiculos {
+
+    private String llantas;
+    private String puertas;
+
+    public Carro(String marca, int modelo, String color, String llantas, String puertas,int pasajeros) {
+        super(marca, modelo, color,pasajeros);
+        this.llantas = llantas;
+        this.puertas = puertas;
+    }
+
+    public String getLlantas() {
+        return llantas;
+    }
+
+    public void setLlantas(String llantas) {
+        this.llantas = llantas;
+    }
+
+    public String getPuertas() {
+        return puertas;
+    }
+
+    public void setPuertas(String puertas) {
+        this.puertas = puertas;
+    }
+
+
+    @Override
+    public  void velocidadKm(){
+        System.out.println("el carro tiene una velocidad de 150 km por hora");
+    }
+}
+------------------------------------------------------------------------------------------------------------
+
+
+
+public class Avion extends Vehiculos {
+
+    private String cantidadMotores;
+
+
+    public Avion(String marca, int modelo, String color, String cantidadMotores,  int pasajeros) {
+        super(marca, modelo, color,pasajeros);
+        this.cantidadMotores = cantidadMotores;
+
+    }
+
+    public String getCantidadMotores() {
+        return cantidadMotores;
+    }
+
+    public void setCantidadMotores(String cantidadMotores) {
+        this.cantidadMotores = cantidadMotores;
+    }
+
+
+
+    @Override
+    public  void velocidadKm(){
+        System.out.println("el avion tiene una velocidad de 800 km por hora");
+    }
+
+
+
+    public void cantidadPasajeros() {
+        if (this.getPasajeros() > 50) {
+            System.out.println("los puestos estan llenos");
+        } else {
+            System.out.println("todavia hay puestos");
+        }
+    }
+
+    public void cantidadPasajeros (int cupos ){
+        if (this.getPasajeros() > cupos) {
+            System.out.println("adelante siga");
+        } else {
+            System.out.println("no se puede hacer nada");
+        }
+     }
+   }
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+public class Main {
+    public static void main(String[] args) {
+
+        Carro carrito = new Carro("ferrary", 2022, "rojo", "cuatro llantas", "dos puertas", 2);
+        System.out.println(carrito.toString() + carrito.getLlantas() + "  " + carrito.getPuertas());
+
+
+        carrito.velocidadKm();
+
+
+        Avion aviones = new Avion("xrl", 2000, "blanco", "cuatro", 20);
+
+        System.out.println(aviones);
+
+
+        aviones.cantidadPasajeros();
+        aviones.cantidadPasajeros(20);
+
+
+    }
+}
+
