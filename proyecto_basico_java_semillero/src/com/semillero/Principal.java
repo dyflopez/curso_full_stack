@@ -1,73 +1,73 @@
 package com.semillero;
 
-import com.semillero.supermercado.CarritoCompras;
-import com.semillero.supermercado.Producto;
-import com.semillero.utilities.Utilidades;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Principal {
 
     public static void main(String[] args) {
 
+        //estructura para declar un vector es
+        //List<TipoDato> nombreVariable = new ArrayList<TipoDato>();
+        //de declarar un vector de numeros enteros
+        List<Integer> numeros = new ArrayList<Integer>();
 
-        //caso 1 en el cual se usa el contructor con datos
-        String nombreProducto;
+        //ver tamaño de la lista
+        System.out.println( "el tamaño de la lista es = " +numeros.size());
 
-        String categoria;
+        //agregar dato a la lista
 
-        double precio;
+        numeros.add(1);
 
-        int stock;
+        System.out.println( "el tamaño de la lista es = " +numeros.size());
 
-        int codigo;
+        numeros.add(23);
 
-        Producto producto;
+        System.out.println( "el tamaño de la lista es = " +numeros.size());
 
-        double totalProducto;
+        for (int index =0; index<numeros.size();index++){
+            System.out.println(numeros.get(index));
+        }
 
-        CarritoCompras carritoCompras = new CarritoCompras();
+        System.out.println(numeros.get(0));
 
-        Utilidades.imprimirMensaje("Ingrese el nombre del producto ");
-        nombreProducto= Utilidades.capturarValor();
 
-        Utilidades.imprimirMensaje("Ingrese Categoria ");
-        categoria= Utilidades.capturarValor();
+        System.out.println("----------FOR EACH------");
 
-        Utilidades.imprimirMensaje("Ingrese valor ");
-        precio= Double.parseDouble(Utilidades.capturarValor());
+        for (Integer valor: numeros) {
+            System.out.println(valor);
+        }
 
-        Utilidades.imprimirMensaje("Ingrese stock ");
-        stock= Utilidades.capturarValorEntero();
+        //eliminar un valor de la lista
 
-        Utilidades.imprimirMensaje("Ingrese codigo ");
-        codigo= Utilidades.capturarValorEntero();
+        numeros.remove(1);
 
-        producto = new Producto(codigo,nombreProducto,categoria,precio,stock);
 
-        totalProducto= carritoCompras.calcularProductoConIva(producto.getPrecio());
+        System.out.println("----------Imprimir arreglo------");
+        for (Integer valor: numeros) {
+            System.out.println(valor);
+        }
 
-        Utilidades.imprimirMensaje("El valor total del producto es "+ totalProducto);
+        numeros.add(10);
+        numeros.add(20);
+        numeros.add(30);
 
-        Utilidades.imprimirMensaje("--------------**************forma 2********************--------------------");
-        //Caso 2 se usa el constructor vacio
+        System.out.println("----------Stream------");
 
-        Producto productoNuevo = new Producto();
+        numeros.stream().forEach( n -> {
+            System.out.println("el valor es " + n);
+        });
 
-        Utilidades.imprimirMensaje("Ingrese el nombre del producto ");
-        productoNuevo.setNombre(Utilidades.capturarValor());
+        //elminar todos los datos
 
-        Utilidades.imprimirMensaje("Ingrese Categoria ");
-        productoNuevo.setCategoria(Utilidades.capturarValor());
+        numeros.clear();
 
-        Utilidades.imprimirMensaje("Ingrese precio del producto ");
-        productoNuevo.setPrecio(Double.parseDouble(Utilidades.capturarValor()));
+        System.out.println("----------se limpia arreglo------");
+        System.out.println( "el tamaño de la lista es = " +numeros.size());
 
-        Utilidades.imprimirMensaje("Ingrese stock ");
-        productoNuevo.setStock(Utilidades.capturarValorEntero());
 
-        Utilidades.imprimirMensaje("Ingrese codigo ");
-        productoNuevo.setCodigo(Utilidades.capturarValorEntero());
-
-        Utilidades.imprimirMensaje("El valor total del producto es "+ carritoCompras.calcularProductoConIva(productoNuevo.getPrecio()));
 
     }
 
