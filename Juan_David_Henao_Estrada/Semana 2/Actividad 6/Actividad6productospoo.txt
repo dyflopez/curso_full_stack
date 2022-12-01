@@ -1,0 +1,142 @@
+package tienda;
+
+import java.util.Scanner;
+
+public class Producto {
+
+    private String nombre;
+    private int precio;
+    private int cantidad;
+    private double total;
+    private double iva=0.19;
+    private double subtotal;
+    private double impuesto;
+
+    public Producto() {}
+
+    public Producto(String nombre, int precio, int cantidad, double total, double iva, double subtotal, double impuesto) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.total = total;
+        this.iva = iva;
+        this.subtotal = subtotal;
+        this.impuesto = impuesto;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public double getIva() {
+        return iva;
+    }
+
+    public void setIva(double iva) {
+        this.iva = iva;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public double getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(double impuesto) {
+        this.impuesto = impuesto;
+    }
+
+    public void solicitarDatos(){
+        Scanner t = new Scanner(System.in);
+
+        System.out.println("Ingrese nombre producto: ");
+        nombre=t.next();
+
+        System.out.println("Ingrese precio: ");
+        precio=t.nextInt();
+
+        System.out.println("ingrese cantidad:");
+        cantidad=t.nextInt();
+
+    }
+    public void calcularDatos(){
+        subtotal=cantidad * precio;
+        impuesto= subtotal*iva;
+        total= subtotal + impuesto;
+
+    }
+    public void mostrarDatos(){
+        System.out.println("Nombre producto: " + nombre);
+        System.out.println("Cantidad: " + cantidad);
+        System.out.println("Precio x unidad: " + precio);
+        System.out.println("Valor sin IVA: " + subtotal);
+        System.out.println("IVA: " + impuesto);
+        System.out.println("El Total con IVA: " + total);
+
+    }
+
+}
+
+
+package tienda;
+
+public class Mensaje {
+
+        public void imprimirMensaje(String mensaje){
+
+        System.out.println(mensaje);
+    }
+
+}
+
+
+package tienda;
+
+public class Main {
+    public static void main(String[] args) {
+
+
+        Producto p = new Producto();
+        Mensaje m = new Mensaje();
+        m.imprimirMensaje("BIENVENIDO");
+
+        p.solicitarDatos();
+        p.calcularDatos();
+        p.mostrarDatos();
+
+    }
+}

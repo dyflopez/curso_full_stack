@@ -1,0 +1,31 @@
+El usuario va a ingresar una oración o frase de N caracteres
+y un separador de palabras, se espera que el sistema realice 
+las siguientes acciones:
+
+	1. El sistema debe mantener la primera y ultima letra de la palabra
+	2. El sistema debe contar y omitir las coincidencias de las letras 
+	   ya existentes.
+	3. El sistema debe mostrar el resultado final.
+	4. El sistema no debe procesar las palabras que sean menores o igual a
+	   2 caracteres.
+	5. El sistema debe mantener los caracteres especiales.
+
+Caso 1
+Entrada
+Hola Bienvenido al semillero re pro de fullstack vamos aprendiendo!
+
+Mensaje final
+H2a B5o al s5o re p1o de f6k, v3s a6o
+
+Caso 2 
+Entrada
+Daniel-Yesid-florez-lopez!
+
+D4l-Y3d-f4z-l3z!
+
+Caso 3
+Entrada
+MelbourEs
+
+Salida 
+M6s

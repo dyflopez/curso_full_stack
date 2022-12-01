@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class Txt {
+
+
+    public void escribirTexto() throws IOException {
+
+        Scanner t =new Scanner(System.in);
+
+        String path="C:\\Users\\jhenaoes\\Downloads\\FULLSTACK\\Semana 3\\Actividad 10\\archivojdh.txt";
+        String contenido;
+
+        File f = new File(path);
+
+        try {
+            if (!f.exists()){
+                f.createNewFile();
+            }
+            FileWriter fw = new FileWriter(f);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            System.out.println("Ingrese texto que desee guardar");
+            contenido=t.nextLine();
+
+            bw.write(contenido);
+            bw.close();
+
+        } catch (Exception e) {
+            System.out.println("SUCEDIO UN ERROR " + e);
+
+        }
+    }
+}
+---------------------------------------------------------
+
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        Txt texto =new Txt();
+        texto.escribirTexto();
+    }
+}
