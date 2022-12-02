@@ -3,6 +3,7 @@ package com.semillero.arraylist.objetos.ejemplo2.supermercado;
 import com.semillero.arraylist.objetos.ejemplo2.dto.Producto;
 import com.semillero.arraylist.objetos.ejemplo2.uilidades.Utilities;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,9 @@ import java.util.Scanner;
 public class GestionarSupermercado {
     private List<Producto> productoList = new ArrayList<>();
     static Producto producto;
+    static double total = 0;
+
+    String ruta="C:/Users/Public/Documents/facturaCarrito.txt";
 
     public void menu() {
         try {
@@ -25,8 +29,8 @@ public class GestionarSupermercado {
             System.out.println("\n   2.   Listar los productos    ");
             System.out.println("\n   3.   Eliminar producto         ");
             System.out.println("\n   4.   Generar Factura         ");
-            System.out.println("\n   5.   Guardar producto          ");
-            System.out.println("\n   6.   Cargar producto        ");
+            System.out.println("\n   5.   Guardar compra          ");
+            System.out.println("\n   6.   Cargar compra        ");
 
 
             System.out.println("Por favor elija una opcion.");
@@ -37,6 +41,7 @@ public class GestionarSupermercado {
 
                 case 1:
                     double precio = 0;
+
                     String idProducto = " ";
                     String nombre;
                     String marca;
@@ -56,6 +61,8 @@ public class GestionarSupermercado {
                         Utilities.mostrarMensaje("Porfavor ingrese el  precio del producto " + (i + 1));
                         //producto.setPrecio(precio);
                         precio = Utilities.capturarDouble();
+
+                        total += precio;
 
 
                         Utilities.mostrarMensaje("Porfavor ingrese la marca del producto " + (i + 1));
@@ -87,33 +94,60 @@ public class GestionarSupermercado {
 
 
                 case 3:
+                    int opcionEliminar;
 
-                    boolean encontrado = false;
+                    System.out.println("Que opcion desea escoger:");
+                    System.out.println("\t\t\t 1. Eliminar 1 producto. ");
+                    System.out.println("\t\t\t 2. Vaciar el carrito. ");
 
-                    System.out.println("Ingresa el codigo del producto a eliminar");
-                    idProducto = entrada.next();
+
+                    opcionEliminar = entrada.nextInt();
+
+                    switch (opcionEliminar) {
+
+                        case 1:
+
+                            boolean encontrado = false;
+
+                            System.out.println("Ingresa el codigo del producto a eliminar");
+                            idProducto = entrada.next();
 
 
-                    for (int i = 0; i < productoList.size(); i++) {
+                            for (int i = 0; i < productoList.size(); i++) {
 
-                        if (productoList.get(i).getIdProducto().equals(idProducto)) {
+                                if (productoList.get(i).getIdProducto().equals(idProducto)) {
 
-                            encontrado = true;
+                                    encontrado = true;
 
-                            productoList.remove(i);
+                                    productoList.remove(i);
 
-                            System.out.println("Producto eliminado satisfactiamente ");
+                                    System.out.println("Producto eliminado satisfactiamente ");
 
-                        } else {
+                                } else {
 
-                            System.out.println("Codigo invalido");
+                                    System.out.println("Codigo invalido");
 
-                        }
+                                }
+                            }
+                            menu();
+                            break;
+
+                        case 2:
+
+                            productoList.clear();
+
+                            if( productoList.isEmpty() ){
+                                System.out.println("Tu carrito esta vacio. ");
+                            }
+
+                            menu();
+                            break;
+
+
                     }
 
 
-                    menu();
-                    break;
+
 
                 case 4:
 
@@ -121,10 +155,17 @@ public class GestionarSupermercado {
 
 
                     String empresa = "GRUPO EXITO S.A";
-                    System.out.println("El codigo del producto es: " + producto.getIdProducto());
-                    System.out.println("El nombre del producto es: " + producto.getNombre());
-                    System.out.println("-----------Total de compra: " + producto.getPrecio());
-                    System.out.println("-----------Total de compra mas IVA: " + ((producto.getPrecio() + (producto.getPrecio() * valorIVA))));
+
+                    for (int i = 0; i < productoList.size(); i++) {
+
+                        System.out.println("El codigo del producto es: " + productoList.get(i).getIdProducto());
+                        System.out.println("El nombre del producto es: " + productoList.get(i).getNombre());
+                        System.out.println("-----------Valor del producto: " + productoList.get(i).getPrecio());
+
+
+                    }
+
+                    System.out.println("-----------Total de compra mas IVA: " + (total + (total * valorIVA)));
                     System.out.println("                               ");
                     System.out.println("------------------------------");
                     System.out.println(empresa);
@@ -135,10 +176,58 @@ public class GestionarSupermercado {
                     break;
 
 
+                case 5:
+
+
+
+                    File file = new File(ruta);
+
+                    try {
+                        if(!file.exists()){
+                            file.createNewFile();
+                        }
+
+                        FileWriter fc  = new FileWriter(file);
+                        BufferedWriter bw = new BufferedWriter(fc);
+
+                        //System.out.println("por favor digite el mensaje que desea guardar");
+                        //mensaje=entrada.nextLine();
+
+                        bw.write(productoList.toString());
+                        bw.close();
+
+                    }catch (Exception e){
+                        System.out.println("fallo el programa " + e.getMessage());
+                    }
+
+
+                case 6:
+
+
+
+                    try{
+                        BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\Public\\Documents\\facturaCarrito.txt"));
+                        String temp = "";
+                        String bfRead;
+                        while ((bfRead = bf.readLine()) != null){
+
+                            temp += bfRead;
+                            System.out.println(bfRead);
+
+                        }
+
+
+                    }catch (Exception e){
+                        System.err.println("No se encontro el archivo");
+
+                    }
+
             }
+
         } catch (Exception e) {
-            System.out.println("Dato ingresado no valido");
-        }
+            System.err.println("Dato ingresado no valido");
+
+        }menu();
 
 
     }
