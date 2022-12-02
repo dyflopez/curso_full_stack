@@ -8,25 +8,15 @@ import jdk.jshell.execution.Util;
 public class EjecutorEjemplo2Arrays {
 
 
-    public void ejecutar(){
+    public static void main(String[] args) {
 
-        GestionarSupermercado supermercado = new GestionarSupermercado();
+        GestionarSupermercado prueba = new GestionarSupermercado();
 
-
-        Utilities.mostrarMensaje("por favor ingrese la cantidad de productos que va registrar");
-        int cantidadProductos = Utilities.capturarEntero();
-
-        for (int i =0 ;i<cantidadProductos;i++){
-            supermercado.agregarProducto();
-        }
-
-
-        supermercado.mostrarCantidadDeProductos();
-
-
-        supermercado.imprimirProdutosForEach();
+        prueba.menu();
 
     }
 
-
 }
+
+
+

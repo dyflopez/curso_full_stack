@@ -4,19 +4,16 @@ import java.time.LocalDate;
 
 public class Producto {
 
+    private String idProducto;
+    private String nombre;
 
-    /**
-     * atributos
-     */
-        private String nombre;
+    private double precio;
 
-        private double precio;
+    private String marca;
 
-        private String marca;
+    private LocalDate fechaVencimiento;
 
-        private LocalDate fechaVencimiento;
-
-        private int stock;
+    private int stock;
 
     /**
      * constructor
@@ -28,12 +25,13 @@ public class Producto {
         this.stock = stock;
     }
 
-    public Producto(String nombre, double precio, String marca, LocalDate fechaVencimiento, int stock) {
+    public Producto(String idProducto, String nombre, double precio, String marca, LocalDate fechaVencimiento, int stock) {
         this.nombre = nombre;
         this.precio = precio;
         this.marca = marca;
         this.fechaVencimiento = fechaVencimiento;
         this.stock = stock;
+        this.idProducto = idProducto;
     }
 
     public Producto() {
@@ -89,6 +87,14 @@ public class Producto {
         this.stock = stock;
     }
 
+    public String getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(String idProducto) {
+        this.idProducto = idProducto;
+    }
+
     /**
      * toString
      */
@@ -101,6 +107,7 @@ public class Producto {
                 ", marca='" + marca + '\'' +
                 ", fechaVencimiento=" + fechaVencimiento +
                 ", stock=" + stock +
+                ", codigo= " + idProducto+
                 '}';
     }
 }
