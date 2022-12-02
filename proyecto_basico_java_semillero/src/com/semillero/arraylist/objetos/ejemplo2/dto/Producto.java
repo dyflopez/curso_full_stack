@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Producto {
 
-    private String idProducto;
+    private int idProducto;
     private String nombre;
 
     private double precio;
@@ -25,7 +25,7 @@ public class Producto {
         this.stock = stock;
     }
 
-    public Producto(String idProducto, String nombre, double precio, String marca, LocalDate fechaVencimiento, int stock) {
+    public Producto(int idProducto, String nombre, double precio, String marca, LocalDate fechaVencimiento, int stock) {
         this.nombre = nombre;
         this.precio = precio;
         this.marca = marca;
@@ -87,11 +87,11 @@ public class Producto {
         this.stock = stock;
     }
 
-    public String getIdProducto() {
+    public int getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(String idProducto) {
+    public void setIdProducto(int idProducto) {
         this.idProducto = idProducto;
     }
 

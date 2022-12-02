@@ -13,12 +13,19 @@ public class Utilities {
 
         cadena=scanner.next();
 
+
         return cadena;
     }
 
     public  static void mostrarMensaje(String mensaje){
 
         System.out.println(mensaje);
+
+    }
+
+    public  static void mostrarMensajError(String mensaje){
+
+        System.err.println(mensaje);
 
     }
 
@@ -30,10 +37,12 @@ public class Utilities {
         try {
             numero=scanner.nextInt();
         }catch (Exception e){
-            Utilities.mostrarMensaje("Error en el metodo capturarEntero() " + e.getMessage());
+            Utilities.mostrarMensajError("Error en el metodo capturarEntero() " + e.getMessage());
+
         }finally {
             Utilities.mostrarMensaje("Salio del metodo capturarEntero()");
         }
+
 
         return numero;
 
@@ -42,12 +51,13 @@ public class Utilities {
     public static  double capturarDouble(){
 
         double numero=0.0;
+
         Scanner scanner = new Scanner(System.in);
 
         try {
             numero=scanner.nextDouble();
         }catch (Exception e){
-            Utilities.mostrarMensaje("Error en el metodo capturarDouble() " + e.toString());
+            Utilities.mostrarMensajError("Error en el metodo capturarDouble() " + e.toString());
         }finally {
             Utilities.mostrarMensaje("Salio del metodo capturarDouble()");
         }

@@ -14,6 +14,8 @@ public class GestionarSupermercado {
     static Producto producto;
     static double total = 0;
 
+    static int cantidadProductos;
+
     String ruta="C:/Users/Public/Documents/facturaCarrito.txt";
 
     public void menu() {
@@ -40,28 +42,36 @@ public class GestionarSupermercado {
 
 
                 case 1:
+
+                    //Ingresamos los productos y los agregamos a la lista
+
                     double precio = 0;
 
-                    String idProducto = " ";
+                    int idProducto;
                     String nombre;
                     String marca;
                     int stock;
 
-                    Utilities.mostrarMensaje("por favor ingrese la cantidad de productos que va registrar");
-                    int cantidadProductos = Utilities.capturarEntero();
+
+                    do {
+
+                        Utilities.mostrarMensaje("por favor ingrese la cantidad de productos que va registrar");
+                        cantidadProductos = Utilities.capturarEntero();
+
+                    }while (cantidadProductos <= 0);
 
                     for (int i = 0; i < cantidadProductos; i++) {
 
                         Utilities.mostrarMensaje("Porfavor ingrese el id del producto " + (i + 1));
-                        idProducto = Utilities.capturarString();
+                        idProducto = Utilities.capturarEntero();
 
                         Utilities.mostrarMensaje("Porfavor ingrese el nombre del producto " + (i + 1));
                         nombre = Utilities.capturarString().toUpperCase();
 
                         Utilities.mostrarMensaje("Porfavor ingrese el  precio del producto " + (i + 1));
-                        //producto.setPrecio(precio);
                         precio = Utilities.capturarDouble();
 
+                        //Creamos variable total donde se va sumando el precio de los productos ingresados
                         total += precio;
 
 
@@ -81,6 +91,8 @@ public class GestionarSupermercado {
                     break;
 
                 case 2:
+
+                    //Recorremo la lista de los productos con un for each
 
                     for (Producto listar : productoList) {
 
@@ -103,6 +115,8 @@ public class GestionarSupermercado {
 
                     opcionEliminar = entrada.nextInt();
 
+                    //Implementamos switch anidado para dar opcion de eliminar un solo producto o vaciar el carrito
+
                     switch (opcionEliminar) {
 
                         case 1:
@@ -110,12 +124,12 @@ public class GestionarSupermercado {
                             boolean encontrado = false;
 
                             System.out.println("Ingresa el codigo del producto a eliminar");
-                            idProducto = entrada.next();
+                            idProducto = entrada.nextInt();
 
 
                             for (int i = 0; i < productoList.size(); i++) {
 
-                                if (productoList.get(i).getIdProducto().equals(idProducto)) {
+                                if (productoList.get(i).getIdProducto() == (idProducto)) {
 
                                     encontrado = true;
 
@@ -125,7 +139,7 @@ public class GestionarSupermercado {
 
                                 } else {
 
-                                    System.out.println("Codigo invalido");
+                                    System.err.println("Codigo invalido");
 
                                 }
                             }
@@ -137,7 +151,7 @@ public class GestionarSupermercado {
                             productoList.clear();
 
                             if( productoList.isEmpty() ){
-                                System.out.println("Tu carrito esta vacio. ");
+                                System.err.println("Tu carrito esta vacio. ");
                             }
 
                             menu();
@@ -147,9 +161,9 @@ public class GestionarSupermercado {
                     }
 
 
-
-
                 case 4:
+
+                    //Generamos la factura recorriendo los productos con un for e imprimiendo el total con el iva incluido
 
                     final double valorIVA = 0.19;
 
@@ -178,7 +192,7 @@ public class GestionarSupermercado {
 
                 case 5:
 
-
+                    //Guardamos la informacion agregada en la lista en un archivo plano
 
                     File file = new File(ruta);
 
@@ -190,22 +204,20 @@ public class GestionarSupermercado {
                         FileWriter fc  = new FileWriter(file);
                         BufferedWriter bw = new BufferedWriter(fc);
 
-                        //System.out.println("por favor digite el mensaje que desea guardar");
-                        //mensaje=entrada.nextLine();
-
                         bw.write(productoList.toString());
                         bw.close();
 
                     }catch (Exception e){
-                        System.out.println("fallo el programa " + e.getMessage());
+                        System.err.println("fallo el programa " + e.getMessage());
                     }
 
 
                 case 6:
 
-
+                    //En el caso 6 implementamos el metodo BufferReader para leer el archivo plano anteriormente guardado
 
                     try{
+
                         BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\Public\\Documents\\facturaCarrito.txt"));
                         String temp = "";
                         String bfRead;
