@@ -37,12 +37,9 @@ public class Utilities {
         try {
             numero=scanner.nextInt();
         }catch (Exception e){
-            Utilities.mostrarMensajError("Error en el metodo capturarEntero() " + e.getMessage());
+            Utilities.mostrarMensajError("Tiene que ingresar un numero entero. ");
 
-        }finally {
-            Utilities.mostrarMensaje("Salio del metodo capturarEntero()");
         }
-
 
         return numero;
 
@@ -57,9 +54,8 @@ public class Utilities {
         try {
             numero=scanner.nextDouble();
         }catch (Exception e){
-            Utilities.mostrarMensajError("Error en el metodo capturarDouble() " + e.toString());
-        }finally {
-            Utilities.mostrarMensaje("Salio del metodo capturarDouble()");
+            Utilities.mostrarMensajError("Por favor ingrese el precio correcto ");
+
         }
 
         return numero;

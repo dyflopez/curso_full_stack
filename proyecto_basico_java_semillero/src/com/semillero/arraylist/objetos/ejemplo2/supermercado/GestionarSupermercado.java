@@ -62,23 +62,28 @@ public class GestionarSupermercado {
 
                     for (int i = 0; i < cantidadProductos; i++) {
 
-                        Utilities.mostrarMensaje("Porfavor ingrese el id del producto " + (i + 1));
-                        idProducto = Utilities.capturarEntero();
+                        do {
+                            Utilities.mostrarMensaje("Por favor ingrese el id del producto " + (i + 1));
+                            idProducto = Utilities.capturarEntero();
+                        }while(idProducto <= 0);
 
-                        Utilities.mostrarMensaje("Porfavor ingrese el nombre del producto " + (i + 1));
+
+                        Utilities.mostrarMensaje("Por favor ingrese el nombre del producto " + (i + 1));
                         nombre = Utilities.capturarString().toUpperCase();
 
-                        Utilities.mostrarMensaje("Porfavor ingrese el  precio del producto " + (i + 1));
-                        precio = Utilities.capturarDouble();
+                        do {
+                            Utilities.mostrarMensaje("Por favor ingrese el  precio del producto " + (i + 1));
+                            precio = Utilities.capturarDouble();
+                        }while(precio <= 0);
 
                         //Creamos variable total donde se va sumando el precio de los productos ingresados
                         total += precio;
 
 
-                        Utilities.mostrarMensaje("Porfavor ingrese la marca del producto " + (i + 1));
+                        Utilities.mostrarMensaje("Por favor ingrese la marca del producto " + (i + 1));
                         marca = Utilities.capturarString().toUpperCase();
 
-                        Utilities.mostrarMensaje("Porfavor ingrese el valor del stock del producto " + (i + 1));
+                        Utilities.mostrarMensaje("Por favor ingrese la cantidad de producto " + (i + 1) + " que hay en stock: ");
                         stock = Utilities.capturarEntero();
 
                         producto = new Producto(idProducto, nombre, precio, marca, LocalDate.now(), stock);
@@ -170,6 +175,10 @@ public class GestionarSupermercado {
 
                     String empresa = "GRUPO EXITO S.A";
 
+                    System.out.println("------------------------------");
+                    System.out.println(empresa);
+                    System.out.println("------------------------------");
+
                     for (int i = 0; i < productoList.size(); i++) {
 
                         System.out.println("El codigo del producto es: " + productoList.get(i).getIdProducto());
@@ -179,11 +188,9 @@ public class GestionarSupermercado {
 
                     }
 
-                    System.out.println("-----------Total de compra mas IVA: " + (total + (total * valorIVA)));
+                    System.out.println("\t\t\t\t Total de compra: " + (total));
+                    System.out.println("\t\t\t Total de compra mas IVA: " + (total + (total * valorIVA)));
                     System.out.println("                               ");
-                    System.out.println("------------------------------");
-                    System.out.println(empresa);
-                    System.out.println("------------------------------");
 
 
                     menu();
@@ -219,7 +226,7 @@ public class GestionarSupermercado {
                     try{
 
                         BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\Public\\Documents\\facturaCarrito.txt"));
-                        String temp = "";
+                        String temp = " ";
                         String bfRead;
                         while ((bfRead = bf.readLine()) != null){
 
