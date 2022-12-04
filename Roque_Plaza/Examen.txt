@@ -1,0 +1,311 @@
+Examen
+
+Main
+
+package com.co.nttdata.evaluacion;
+
+public class Main {
+    public static void main(String[] args) {
+        Logica.menu();
+
+    }
+}
+------------------------------------------------------------
+
+Clase Logica
+
+package com.co.nttdata.evaluacion;
+
+import javax.imageio.IIOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Logica {
+
+    public static List<Producto> ListaProductos = new ArrayList<>();
+
+    public static int opciones() {
+        Scanner teclado = new Scanner(System.in);
+        int opcion = 0;
+
+
+        while (true) {
+
+
+            Utilities.mostrarMensaje("1. Agregar Producto");
+            Utilities.mostrarMensaje("2. Consultar Cantidad");
+            Utilities.mostrarMensaje("3. Listar");
+            Utilities.mostrarMensaje("4. Eliminar");
+            Utilities.mostrarMensaje("5. Cargar");
+            Utilities.mostrarMensaje("6. Salvar (leer) ");
+            Utilities.mostrarMensaje("7. salir ");
+            opcion = teclado.nextInt();
+
+            return opcion;
+        }
+
+    }
+
+    public static void menu() {
+        Utilities.mostrarMensaje("\uD83D\uDED2 MENÚ \uD83D\uDED2");
+        switch (opciones()) {
+            case 1:
+                Logica.agregarproducto();
+                break;
+            case 2:
+                Logica.consultarcantidad();
+                break;
+            case 3:
+                Logica.mostrarDatos();
+                break;
+            case 4:
+                Logica.eliminar("");
+                break;
+            case 5:
+                Logica.leerarchivo();
+                break;
+            case 6:
+                Logica.escribirentxt();
+                break;
+            case 7:
+                break;
+        }
+    }
+
+
+    public static void agregarproducto() {
+
+        Scanner teclado = new Scanner(System.in);
+        String nombre;
+        String categoria;
+        int precio;
+        int numProductos;
+
+
+        do {
+            Utilities.mostrarMensaje("Ingrese cantidad de productos: ");
+            numProductos = Utilities.capturarEntero();
+        } while (numProductos <= 0);
+        {
+
+            for (int i = 0; i < numProductos; i++) {
+
+                Producto producto1 = new Producto("", " ", 0);
+                System.out.print("\nEscribe el nombre de producto: ");
+                nombre = teclado.next();
+                producto1.setNombre(nombre);
+
+                System.out.print("\nEscribe la categoria: ");
+                categoria = teclado.next();
+                producto1.setCategoria(categoria);
+
+                System.out.print("\nEscribe el precio: ");
+                precio = teclado.nextInt();
+                producto1.setPrecio(precio);
+
+                ListaProductos.add(producto1);
+            }
+        }
+    }
+
+    public static void consultarcantidad() {
+        for (int i = 0; i < ListaProductos.size(); i++) {
+            Utilities.mostrarMensaje("la cantidad de productos es: " + ListaProductos.size());
+        }
+    }
+
+    public static void escribirentxt() {
+        String ruta = "C:\\Users\\rplazagu\\Downloads\\Examen3.5\\src\\com\\co\\nttdata\\nuevo.txt";
+        PrintWriter escribir;
+        File doc = new File(ruta);
+        if (!doc.exists()) {
+            Utilities.mostrarMensaje("Archivo creado");
+            try {
+                doc.createNewFile();
+            } catch (Exception e) {
+                Utilities.mostrarMensaje("Falló ");
+            }
+            Utilities.mostrarMensaje("el archivo existe");
+        } else {
+            try {
+                escribir = new PrintWriter(doc);
+                escribir.println(ListaProductos);
+                escribir.close();
+            } catch (Exception e) {
+                e.getStackTrace();
+            }
+
+        }
+    }
+
+    public static void mostrarDatos() {
+        for (Producto i : ListaProductos) {
+            Utilities.mostrarMensaje("Producto: " + i.getNombre());
+            Utilities.mostrarMensaje("Categoria: " + i.getCategoria());
+            Utilities.mostrarMensaje("Precio: " + i.getPrecio());
+
+
+        }
+
+
+    }
+
+    public static void leerarchivo() {
+
+        File archivo;
+        FileReader leer;
+        String cadena;
+        archivo = new File("C:\\Users\\rplazagu\\Downloads\\Examen3.5\\src\\com\\co\\nttdata\\nuevo.txt");
+        try {
+            leer = new FileReader(archivo);
+            BufferedReader guardar = new BufferedReader(leer);
+            cadena = "";
+            while (cadena != null) {
+                try {
+                    cadena = guardar.readLine();
+                    if (cadena != null) {
+                        Utilities.mostrarMensaje(cadena);
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+            try {
+                guardar.close();
+
+
+            } catch (IIOException ex) {
+                leer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static void eliminar(String dato) {
+        try {
+
+
+            ListaProductos.removeIf(i -> i.getNombre().equals(dato));
+            Logica.mostrarDatos();
+        } catch (Exception e) {
+
+        }
+    }
+}
+------------------------------------------------------------------
+Clase Producto
+package com.co.nttdata.evaluacion;
+
+public class Producto {
+    private String nombre;
+    private String categoria;
+    public int precio;
+
+    public Producto(String nombre, String categoria, int precio) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.precio = precio;
+    }
+
+    public Producto() {
+
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "nombre='" + nombre + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", precio=" + precio +
+                '}';
+    }
+}
+--------------------------------------------------------------
+
+Clase Utilities
+
+package com.co.nttdata.evaluacion;
+
+import java.util.Scanner;
+
+public class Utilities {
+    public static  String capturarString(String cadena){
+
+        Scanner scanner = new Scanner(System.in);
+
+        cadena=scanner.nextLine();
+
+        return cadena;
+    }
+
+    public  static void mostrarMensaje(String mensaje){
+
+        System.out.println(mensaje);
+
+    }
+
+    public static  int capturarEntero(){
+
+        int numero=0;
+        Scanner scanner = new Scanner(System.in);
+
+        // try {
+        numero=scanner.nextInt();
+        //   }catch (Exception e){
+        //  Utilities.mostrarMensaje("Error en el metodo capturarEntero() " + e.getMessage());
+        //  }finally {
+        //  Utilities.mostrarMensaje("Salio del metodo capturarEntero()");
+        // }
+
+        return numero;
+
+    }
+
+    public static  double capturarDouble(){
+
+        double numero=0.0;
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            numero=scanner.nextDouble();
+        }catch (Exception e){
+            Utilities.mostrarMensaje("Error en el metodo capturarDouble() " + e.toString());
+        }finally {
+            Utilities.mostrarMensaje("Salio del metodo capturarDouble()");
+        }
+
+        return numero;
+
+    }
+}
