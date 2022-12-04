@@ -1,0 +1,1 @@
+[Producto{nombre='tenis', precio=25000.0, marca='venus'}]
