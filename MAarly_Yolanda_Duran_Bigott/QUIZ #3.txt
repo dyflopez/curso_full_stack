@@ -1,0 +1,337 @@
+package Proyecto;
+
+import java.time.LocalDate;
+
+public class Producto {
+
+
+    /**
+     * atributos
+     */
+    private String nombre;
+
+    private double precio;
+
+    private String marca;
+
+    private LocalDate fechaVencimiento;
+
+    private int stock;
+
+    /**
+     * constructor
+     */
+    public Producto(String nombre, double precio, String marca) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.marca = marca;
+        this.stock = stock;
+    }
+
+    public Producto(String nombre, double precio, String marca, LocalDate fechaVencimiento, int stock) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.marca = marca;
+        this.fechaVencimiento = fechaVencimiento;
+        this.stock = stock;
+    }
+
+    public Producto() {
+    }
+
+    /***
+     * metodos
+     */
+
+
+
+    /**
+     * metodos de get set
+     */
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public LocalDate getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    /**
+     * toString
+     */
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", marca='" + marca + '\'' +
+                ", fechaVencimiento=" + fechaVencimiento +
+                ", stock=" + stock +
+                '}';
+    }
+}
+___________________________________________________________________________________________________
+package Proyecto;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import static Proyecto.Utilities.capturarEntero;
+public class GestionarSupermercado {
+
+    List<Producto> listaProductos = new ArrayList<>();
+
+    public void agregarProductos() {
+
+        Producto producto = new Producto();
+        String nombre;
+        double precio;
+        String marca;
+
+        Utilities.mostrarMensaje("Ingrese nombre del producto");
+        nombre = Utilities.capturarTexto();
+
+        Utilities.mostrarMensaje("Ingrese precio ");
+        precio = Utilities.capturarDecimal();
+
+        Utilities.mostrarMensaje("Ingrese marca ");
+        marca = Utilities.capturarTexto();
+
+        producto = new Producto(nombre, precio, marca);
+        listaProductos.add(producto);
+    }
+    public void listarProductos() {
+
+        for (Producto producto : listaProductos) {
+            Utilities.mostrarMensaje(producto.toString() );
+        }
+    }
+    public void elminarProductos() {
+
+        int eliminar;
+        Utilities.mostrarMensaje("Cantidad de productos: " + listaProductos.size());
+
+        Utilities.mostrarMensaje("Para eliminar digite 0 siendo el primer producto de "+ listaProductos.size());
+        eliminar = capturarEntero();
+
+        if(eliminar >= listaProductos.size()){
+            System.out.println("Error en cantidad seleccionada");
+        }else{
+            listaProductos.remove(eliminar);
+            System.out.println("Prodcuto removido");
+        }
+
+    }
+    public void guardarListaEnArchivo() throws IOException {
+
+        String path="C:\\Users\\mduranbi\\Downloads\\Full Stack\\Semana 3 adtractas\\Proyecto Quiz\\archivoLista.txt";
+
+        File f = new File(path);
+
+        try {
+            if (!f.exists()){
+                f.createNewFile();
+            }
+            FileWriter fw = new FileWriter(f);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            bw.write(String.valueOf(listaProductos));
+            bw.close();
+
+            Utilities.mostrarMensaje("Lista Guardada en Archivo");
+
+        } catch (Exception e) {
+            System.out.println("SUCEDIO UN ERROR " + e);
+
+        }
+    }
+    public void leerArchivo() {
+
+        File archivo;
+        FileReader fr;
+        BufferedReader br;
+
+        try{
+            archivo =new File("C:\\Users\\mduranbi\\Downloads\\Full Stack\\Semana 3 adtractas\\Proyecto Quiz\\archivoLista.txt");
+            fr=new FileReader(archivo);
+            br=new BufferedReader(fr);
+            String linea;
+            while ((linea=br.readLine())!=null){
+                System.out.println(linea);
+            }
+            br.close();
+            fr.close();
+
+        } catch (Exception e) {
+            System.out.println("error "+ e);
+        }
+    }
+    public void menu()throws IOException {
+        Scanner g = new Scanner(System.in);
+
+        int meta = 0;
+        while (meta == 0){
+
+            System.out.println("MENU DE OPCIONES");
+            System.out.println("----------------");
+            System.out.println("1. INGRESAR PRODUCTOS");
+            System.out.println("2. CONSULTAR PRODUCTOS");
+            System.out.println("3. ELIMINAR PRODUCTOS");
+            System.out.println("4. GUARDAR LISTA EN ARCHIVO");
+            System.out.println("5. LEER ARCHIVO");
+            System.out.println("6. SALIR");
+            capturarEntero();
+            int opcion = capturarEntero();
+
+            opcion = capturarEntero();
+
+            switch (opcion) {
+
+                case 1 -> ingresarProductos();
+
+                case 2 -> consultarProductos();
+
+                case 3 -> elminarProductos();
+
+                case 4 -> guardarListaEnArchivo();
+
+                case 5 -> leerArchivo();
+
+                case 6 -> {
+                    System.out.println("salir");
+                    meta = 1;
+                }
+
+            }
+
+
+        }
+
+    }
+
+    private void consultarProductos() {
+        int consultar;
+        Utilities.mostrarMensaje("Consultar cantidad de productos: " + listaProductos.size());
+
+        Utilities.mostrarMensaje("Consulta producto de "+ listaProductos.size());
+        consultar = capturarEntero();
+
+        if(consultar >= listaProductos.size()){
+            System.out.println("Cantidad seleccionada");
+        }else{
+            listaProductos.remove(consultar);
+            System.out.println("Prodcuto ");
+        }
+
+    }
+    private void ingresarProductos() {
+        int ingresar;
+        Utilities.mostrarMensaje("Ingresar cantidad de productos: " + listaProductos.size());
+
+        Utilities.mostrarMensaje("Ingresar producto de "+ listaProductos.size());
+        ingresar = capturarEntero();
+
+        if(ingresar>= listaProductos.size()){
+            System.out.println("Ingresar cantidad seleccionada");
+        }else{
+            listaProductos.remove(ingresar);
+            System.out.println("Ingresar prodcuto ");
+        }
+
+    }
+}
+_______________________________________________________________________________________________________
+package Proyecto;
+
+import java.io.IOException;
+import java.util.Scanner;
+public class Utilities {
+
+    public static  String capturarString(){
+        String cadena;
+        Scanner scanner = new Scanner(System.in);
+        cadena=scanner.next();
+
+        return cadena;
+    }
+
+    public  static void mostrarMensaje(String mensaje){
+
+        System.out.println(mensaje);
+    }
+    public static  int capturarEntero(){
+
+        int numero=0;
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            numero=scanner.nextInt();
+        }catch (Exception e){
+            Utilities.mostrarMensaje("Error en el metodo capturarEntero() " + e.getMessage());
+        }finally {
+            Utilities.mostrarMensaje("Salio del metodo capturarEntero()");
+        }
+        return numero;
+    }
+
+    public static double capturarDecimal() {
+        return 0;
+    }
+
+    public static String capturarTexto() {
+        return null;
+    }
+
+
+}
+
+
+____________________________________________________________________________________________________
+import Proyecto.GestionarSupermercado;
+import Proyecto.Utilities;
+
+import java.io.IOException;
+
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        GestionarSupermercado gs =new GestionarSupermercado();
+        Utilities g =new Utilities();
+
+        gs.menu();
+    }
+}
