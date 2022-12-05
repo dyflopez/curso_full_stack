@@ -1,0 +1,62 @@
+CAMILO GOMEZ
+
+
+
+create database productos;
+
+use productos;
+
+create table Producto(
+idProducto int not null auto_increment,
+categoria varchar (100),
+nombre varchar (100),
+precio int (20),
+primary key (idProducto)
+);
+
+
+insert into Producto values (1,'aseo', 'escoba',2000);
+insert into Producto values (2,'aseo', 'trapero',3000);
+insert into Producto values (3,'aseo', 'rastrillo',5000);
+insert into Producto values (4,'aseo', 'cepillo',2000);
+insert into Producto values (5,'aseo', 'fab',4000);
+insert into Producto values (6,'aseo', 'detergente',5000);
+insert into Producto values (7,'aseo', 'aromatizante',3000);
+insert into Producto values (8,'aseo', 'jabon',2000);
+insert into Producto values (9,'aseo', 'paños',3000);
+insert into Producto values (10,'aseo', 'desinfectante',5000);
+
+insert into Producto values (11,'electrodomesticos', 'televisor',600000);
+insert into Producto values (12,'electrodomesticos', 'computador',2000000);
+insert into Producto values (13,'electrodomesticos', 'parlante',500000);
+insert into Producto values (14,'electrodomesticos', 'celular',700000);
+insert into Producto values (15,'electrodomesticos', 'lavadora',400000);
+insert into Producto values (16,'electrodomesticos', 'licuadora',100000);
+insert into Producto values (17,'electrodomesticos', 'aire acondicionado',2000000);
+insert into Producto values (18,'electrodomesticos', 'estufa',400000);
+insert into Producto values (19,'electrodomesticos', 'nevera',600000);
+insert into Producto values (21,'electrodomesticos', 'horno',200000);
+
+insert into Producto values (22,'comidas', 'arroz',2000);
+insert into Producto values (23,'comidas', 'pollo',3000);
+insert into Producto values (24,'comidas', 'carne',5000);
+insert into Producto values (25,'comidas', 'papas',2000);
+insert into Producto values (26,'comidas', 'frijoles',4000);
+insert into Producto values (27,'comidas', 'platano',5000);
+insert into Producto values (28,'comidas', 'espaguetis',3000);
+insert into Producto values (29,'comidas', 'huevo',2000);
+insert into Producto values (30,'comidas', 'pescado',3000);
+
+
+alter table Producto drop precio;
+alter table Producto add stock varchar(50);
+
+update Producto set nombre = 'limpido' where idProducto='1';
+delete from Producto where idProducto=3;
+select * from Producto where nombre = 'lavadora';
+select * from vista ;
+
+select * from Producto;
+
+create or replace view vista as
+select * from Producto where idProducto  >10;
