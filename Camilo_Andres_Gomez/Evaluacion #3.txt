@@ -1,0 +1,263 @@
+CAMILO GOMEZ
+
+
+public class Producto {
+
+    private String nombre;
+    private String marca;
+    private double precio;
+    private String categoria;
+
+
+    public Producto(String nombre, String marca, double precio, String categoria) {
+        this.nombre = nombre;
+        this.marca = marca;
+        this.precio = precio;
+        this.categoria = categoria;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "nombre='" + nombre + '\'' +
+                ", marca='" + marca + '\'' +
+                ", precio=" + precio +
+                ", categoria='" + categoria + '\'' +
+                '}';
+    }
+}
+--------------------------------------------------------------------------------------------------
+
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Ejecutor {
+
+    Scanner entradaDatos = new Scanner(System.in);
+    List<Producto> productos = new ArrayList<>();
+
+    String nombre;
+    double precio;
+    String marca;
+    String categoria;
+    int cantidadProducto;
+
+
+
+
+
+    public void cantidadProducto() {
+        do {
+            System.out.print("\nIngrese cantidad de producto a registrar");
+            cantidadProducto = entradaDatos.nextInt();
+
+            if (cantidadProducto < 1) {
+                System.out.println("\nERROR, el número ingresado no corresponde, intente de nuevo ");
+                System.out.println("--- \n");
+
+            } else {
+                System.out.println("ok");
+            }
+        }
+        while (cantidadProducto < 1);
+    }
+
+    public void ingresarProducto() {
+
+        for (int i = 0; i < cantidadProducto; i++) {
+
+            System.out.println("ingrese la categoria del producto");
+            categoria = entradaDatos.next();
+
+            System.out.println("ingrese el nombre del producto");
+            nombre = entradaDatos.next();
+
+            System.out.println("ingrese el precio del producto");
+            precio = entradaDatos.nextDouble();
+
+            System.out.println("ingrese la marca del producto");
+            marca = entradaDatos.next();
+
+
+            Producto producto1 = new Producto(nombre, marca, precio, categoria);
+            productos.add(producto1);
+
+        }
+
+
+    }
+
+    public void mostrarDatos() {
+
+
+        for (int i = 0; i < productos.size(); i++) {
+            System.out.println("CATEGORIA:"+" "+productos.get(i).getCategoria() +
+                    " NOMBRE " +" "+ productos.get(i).getNombre() +
+                    " PRECIO " +" "+ productos.get(i).getPrecio() +
+                    " MARCA " +" "+ productos.get(i).getMarca());
+
+        }
+
+    }
+
+    public void elminarProducto(){
+        int eliminar ;
+        System.out.println("cantidad"+productos.size());
+        mostrarDatos();
+
+        System.out.println("cuantos dese eliminar");
+        eliminar=entradaDatos.nextInt();
+        productos.remove(eliminar);
+
+
+            
+        }
+
+
+        public void crearArchivo(){
+
+            String ruta="C:\\Users\\cgomealt\\Downloads\\Archivo\\Archivo.txt";
+
+
+            File file= new File(ruta);
+            String archivo;
+            try {
+
+                if (!file.exists()){
+                    file.createNewFile();
+                }
+                FileWriter fw = new FileWriter(file);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(String.valueOf(productos));
+                bw.close();
+
+            }catch (IOException e) {
+                System.err.println("no se ha podido crear el arrchivo");
+            }
+
+
+
+    }
+
+        public void leertexto(){
+
+            File archivo;
+            FileReader fr;
+            BufferedReader br;
+
+            try{
+                archivo =new File("C:\\Users\\cgomealt\\Downloads\\Archivo\\Archivo.txt");
+                fr=new FileReader(archivo);
+                br=new BufferedReader(fr);
+                String linea;
+
+                    while ((linea=br.readLine())!=null){
+                        System.out.println(linea);
+                    }
+                    br.close();
+                    fr.close();
+
+                } catch (Exception e) {
+                    System.out.println("error "+ e);
+                }
+            }
+        }
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner entradaDatos = new Scanner(System.in);
+
+        Ejecutor ejecutor = new Ejecutor();
+
+        int limite=0;
+        while (limite==0){
+
+            System.out.println("MENU DE OPCIONES");
+            System.out.println("===================");
+            System.out.println("1-INGRESAR PRODUCTOS \uD83D\uDECD");
+            System.out.println("2-CONSULTAR PRODUCTOS \uD83D\uDED2");
+            System.out.println("3-ELIMINAR PRODUCTOS");
+            System.out.println("4-SALVAR PRODUCTOS");
+            System.out.println("5-LEER ARCHIVO");
+            System.out.println("6-SALIR");
+            int opcion = entradaDatos.nextInt();
+
+            switch (opcion){
+                case 1:
+                    ejecutor.cantidadProducto();
+                    ejecutor.ingresarProducto();
+
+                    break;
+
+                case 2:
+                    ejecutor.mostrarDatos();
+                    break;
+
+                case 3:
+                    ejecutor.elminarProducto();
+                    break;
+
+                case 4:
+                    ejecutor.crearArchivo();
+
+                    break;
+                case 5:
+                    ejecutor.leertexto();
+
+                    break;
+
+                case 6:
+                    System.out.println("SALISTE DEL MENU");
+                    limite=1;
+                    break;
+                default:
+                    System.out.println("ESTA OPCION NO ES VALIDA");
+            }
+        }
+
+    }
+}
+
+
+

@@ -1,0 +1,55 @@
+create database prueba;
+use prueba;
+create table personas( 
+id int (3) primary key, nombre varchar (20),
+apellido varchar(15));
+select  * FROM  personas;
+---------------------------------------
+SELECT * FROM prueba.personas;
+insert into personas values( 1, 'juan', 'ruiz');
+insert into personas values( 2, 'camila', 'suarez');
+insert into personas values( 3, 'pepe', 'soto');
+insert into personas values( 4, 'pedro', 'ruiz');
+insert into personas values( 5, 'ana', 'perez');
+insert into personas values( 6, 'jonas', 'lopez');
+insert into personas values( 7, 'juan', 'garcia');
+insert into personas values( 8, 'david', 'martinez');
+insert into personas values( 9, 'deiver', 'hoyos');
+insert into personas values( 10, 'josue', 'rueda');
+insert into personas values( 11, 'daniel', 'diaz');
+insert into personas values( 12, 'damian', 'celis');
+insert into personas values( 13, 'lola', 'vaca');
+insert into personas values( 14, 'lupe', 'toro');
+insert into personas values( 15, 'carlos', 'hoz');
+insert into personas values( 16, 'maria', 'nunes');
+insert into personas values( 17, 'stefanie', 'sossa');
+insert into personas values( 18, 'esteban', 'garcia');
+insert into personas values( 19, 'luis', 'rojas');
+insert into personas values(20, 'samuel', 'hoyos');
+insert into personas values( 21, 'alba', 'torres');
+insert into personas values( 22, 'cesar', 'osorio');
+insert into personas values( 23, 'emilio', 'julio');
+insert into personas values( 24, 'juan', 'ruiz');
+insert into personas values( 25, 'valeria', 'tapias');
+insert into personas values( 26, 'isabel', 'urrego');
+insert into personas values( 27, 'sofia', 'florez');
+insert into personas values( 28, 'tatiana', 'hernandez');
+insert into personas values( 29, 'alicia', 'duarte');
+insert into personas values( 30, 'rocio', 'duarte');
+----------------------------------------------------------
+update  personas
+set id=58 where id = 25
+---------------------------------------------
+delete  from personas
+where id = 58
+----------------------------------------------------------
+select * from personas
+where id = 58
+------------------------------------------------
+select  * from personas
+where id in (10,5,25);
+---------------------------------------------------------
+create or replace view visualización as
+ select * from personas where nombre like  '%e%'
+---------------------------------------------------------
+select * from personas where nombre like  '%e%' 

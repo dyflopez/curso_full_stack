@@ -1,0 +1,150 @@
+Actividad salario *
+---------------------------
+Main 
+
+import metodo.Metodo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+
+
+        Metodo.RegistroEmpleado();
+        Metodo.mostrarDatos();
+        Metodo.ValidarSalario();
+    }
+}
+--------------------------------------------
+Clase Metodo
+
+package metodo;
+
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+import static javax.swing.UIManager.get;
+
+public class Metodo {
+
+    public static List<Empleado> Empleados = new ArrayList<>();
+
+
+    public static void RegistroEmpleado() {
+
+        Scanner teclado = new Scanner(System.in);
+        String nombre = "";
+        String apellido;
+        int salario = 0;
+        int numEmpleado;
+
+        do {
+
+
+            System.out.println("por favor ingresa cantidad de Empelados: ");
+            numEmpleado = teclado.nextInt();
+        } while (numEmpleado <= 0);
+
+        {
+            for (int i = 0; i < numEmpleado; i++) {
+                Empleado nuevoEmpleado = new Empleado("", " ", 0);
+                System.out.println("nombre : ");
+                nombre = teclado.next();
+                nuevoEmpleado.setNombre(nombre);
+
+                System.out.println("Apellido: ");
+                apellido = teclado.next();
+                nuevoEmpleado.setApellido(apellido);
+                do {
+                    System.out.println("Salario: ");
+                    salario = teclado.nextInt();
+
+
+                } while (salario < 0);
+                nuevoEmpleado.setSalario(salario);
+
+                Empleados.add(nuevoEmpleado);
+
+            }
+
+
+        }
+    }
+
+    public static void mostrarDatos() {
+        for (Empleado i : Empleados) {
+            System.out.println(" Nombre: " + i.getNombre());
+            System.out.println(" Apellido: " + i.getApellido());
+            System.out.println(" Salario: " + i.getSalario());
+
+
+        }
+
+    }
+
+
+    public static void ValidarSalario() {
+        for (Empleado i : Empleados) {
+            if (i.getSalario() < 1000000) {
+                System.out.println("*" + i.getNombre());
+            }
+        }
+    }
+}
+---------------------------------------------------------------
+Clase Empleado
+
+
+package metodo;
+
+
+public class Empleado {
+    private String nombre;
+    private String apellido;
+    private int salario;
+
+    public Empleado() {
+
+    }
+
+    public Empleado(String nombre, String apellido, int salario) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.salario = salario;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public int getSalario() {
+        return salario;
+    }
+
+    public void setSalario(int salario) {
+        this.salario = salario;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", salario=" + salario +
+                '}';
+    }
+}
