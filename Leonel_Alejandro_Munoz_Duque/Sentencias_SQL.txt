@@ -1,0 +1,77 @@
+#Crear base de datos
+CREATE DATABASE Java_FullStack;
+
+#Sleccionar base de datos
+USE Java_FullStack;
+
+#Crear tabla personas
+CREATE TABLE personas(
+	id_persona int auto_increment not null,
+    numero_tarjeta_identificacion int not null,
+    nombre varchar(30) not null,
+    apellido varchar(30),
+    edad int not null,
+    ciudad_residencia varchar(50),
+    CONSTRAINT pk_id_alum PRIMARY KEY (id_persona)
+);
+
+#Insertar informacion a la base de datos
+INSERT INTO personas (numero_tarjeta_identificacion, nombre, apellido, edad, ciudad_residencia) VALUES (356985, 'Carlos', 'Cucaita', 69, 'Cali'),
+(78563254, 'Gustavo', 'Rojas', 53, 'Bogota'), (45145263, 'Rene', 'Rodriguez', 32, 'Villavicencio');
+
+#Mostrar toda la informacion de la tabla
+SELECT * FROM personas;
+
+#Consultar informacion de una tabla colocando un alias a los campos
+SELECT numero_tarjeta_identificacion as identificacion, nombre, edad FROM personas;
+
+#Sentencia para descativar el modo Safe, el cual no deja borra o actualizar los registros de la tabla
+SET SQL_SAFE_UPDATES = 0;
+
+#Borrar todos los datos de la tabla persona
+DELETE FROM personas;
+
+#Reiniciar valores id persona
+ALTER TABLE personas auto_increment=1;
+
+#Ingresar datos de personas en una sola sentencia
+INSERT INTO personas (numero_tarjeta_identificacion, nombre, apellido, edad, ciudad_residencia) VALUES (356985, 'Carlos', 'Cucaita', 69, 'Cali'),
+(78563254, 'Gustavo', 'Rojas', 53, 'Bogota'), (45145263, 'Rene', 'Rodriguez', 32, 'Villavicencio'), (2556, 'Yuber', 'Alfonso', 37, 'Villa de Leyva'),
+ (2563458, 'Laura', 'Gomez', 27, 'Medellin'), (3562459, 'Xiomara', 'Guerrero', 19, 'Tunja'), (32563144, 'Camila', 'Aguilera', 25, 'Bogota'), 
+ (3256825, 'Jenn', 'Muriel', 39, 'Cucuta'), (98754123, 'Jules', 'Ochoa', 33, 'Houston'), (452365, 'Carolina','Gomez', 38, 'Cartagena'), 
+ (3256984, 'Valeria', 'Ospina', 18, 'Popayan'), (25669784, 'Karem','Suarez', 26, 'Bucaramanga'), (85501654, 'Nayra', 'Ortega', 21, 'Pereira'), 
+ (1325898, 'Diana', 'Hernandez', 26, 'Madrid'), (2546321, 'Karen', 'Velandia', 32, 'Medellin'), (5684457, 'Katherin', 'Suaza', 43, 'Santa Marta'), 
+ (3568974, 'Levy', 'Rincon', 37, 'Popayan'), (4587962, 'Valentina', 'Londoño', 23, 'Yopal'), (254854, 'Laura', 'Rodriguez', 32, 'Valledupar'),
+ (3256845, 'Oscar', 'Marin', 47, 'Neiva'), (2568456, 'Abril', 'Schreiber', 27, 'Caracas'), (3254136, 'Ernesto', 'Urrego', 42, 'Florencia'), 
+ (2547896, 'Rafael', 'Cubero', 73, 'Monteria'), (6893521, 'Dulce','Alarcon', 33, 'Pasto'), (90021172, 'Leonor', 'Quiroga', 26, 'Mocoa'), 
+ (562358, 'Emma', 'Carrillo', 25, 'Sincelejo'), (6589635, 'Nina', 'Saez', 45, 'Mitu'), (45454654, 'Michelle', 'Vivas', 22, 'Elk Point'), 
+ (56897452, 'Isidro', 'Molina', 32, 'Embrun'), (112125451, 'Roque', 'Lorenzo', 27, 'Lachine');
+
+#Actualizar ciudad de residencia persona con id 27
+UPDATE personas SET ciudad_residencia = 'Los Lagos' WHERE id_persona = 27;
+
+#Borrar persona con id = 16
+DELETE FROM personas WHERE id_persona = 16;
+
+#Restaurar id_persona
+SET @autoid :=0;
+update personas set id_persona = @autoid := (@autoid+1);
+alter table personas AUTO_increment = 1;
+
+#Seleccionar a personas cuyo nombre terminen en A 
+SELECT * FROM personas WHERE nombre LIKE '%a';
+
+#Seleccionar a personas cuyo nombre comiencen en A
+SELECT * FROM personas WHERE nombre LIKE 'a%';
+
+#Seleccionar personas cuyo nombre contenga una A
+SELECT * FROM personas WHERE nombre LIKE '%a%';
+
+#Crear vista consulta de tabla
+CREATE OR REPLACE VIEW vista_total_tabla AS SELECT * FROM personas;
+
+#Usar vista creada
+SELECT * FROM vista_total_tabla;
+
+#Crear vista de usuarios consulta de usuarios entre el id 15 al 25
+SELECT * FROM personas WHERE id_persona BETWEEN 15 AND 25;
