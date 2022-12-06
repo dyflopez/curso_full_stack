@@ -1,0 +1,54 @@
+create database prueba;
+
+create database colegio;
+
+use colegio;
+
+create table alumnos (ide int(11)PRIMARY KEY,nombre VARCHAR(30),apellido varchar(30));
+
+SELECT * FROM alumnos;
+
+SELECT * FROM colegio.alumnos;
+
+INSERT INTO alumnos VALUES(1,'Yolanda','Duran');
+INSERT INTO alumnos VALUES(2,'Cesar','Heredia');
+INSERT INTO alumnos VALUES(3,'roney','Parada');
+INSERT INTO alumnos VALUES(4,'Marly','Bigott');
+INSERT INTO alumnos VALUES(5,'Mary','Sogamoso');
+INSERT INTO alumnos VALUES(6,'Isabel','Cuevas');
+INSERT INTO alumnos VALUES(7,'Ana','Segua');
+INSERT INTO alumnos VALUES(8,'Marina','Gonzalez');
+INSERT INTO alumnos VALUES(9,'Juan','Soto');
+INSERT INTO alumnos VALUES(10,'Samuel','Ovejero');
+INSERT INTO alumnos VALUES(11,'Roberto','Vela');
+INSERT INTO alumnos VALUES(12,'Hilda','Amado');
+INSERT INTO alumnos VALUES(13,'Llaned','Perez');
+INSERT INTO alumnos VALUES(14,'Yesid','Sarmiento');
+INSERT INTO alumnos VALUES(15,'Nuriz','Macualo');
+INSERT INTO alumnos VALUES(16,'Stella','Toncon');
+INSERT INTO alumnos VALUES(17,'Cristian','Piraban');
+INSERT INTO alumnos VALUES(18,'Yamile','Florez');
+INSERT INTO alumnos VALUES(19,'Sebastian','Hurtado');
+INSERT INTO alumnos VALUES(20,'Carmen','Villasana');
+INSERT INTO alumnos VALUES(21,'Camilo','Soloza');
+INSERT INTO alumnos VALUES(22,'Mario','Brito');
+INSERT INTO alumnos VALUES(23,'Constanza','Cely');
+INSERT INTO alumnos VALUES(24,'Marcela','Acosta');
+INSERT INTO alumnos VALUES(25,'Fernanda','Gutierrez');
+INSERT INTO alumnos VALUES(26,'Maria','Alcantara');
+INSERT INTO alumnos VALUES(27,'luisa','Plazas');
+INSERT INTO alumnos VALUES(28,'Daniel','Cepeda');
+INSERT INTO alumnos VALUES(29,'Fidel','Velandia');
+INSERT INTO alumnos VALUES(30,'Mercedes','Viancha');
+--------------------------------------------------------
+select  *  from  alumnos where ide - 28
+-------------------------------------------------------
+delete from alumnos where ide - 20
+--------------------------------------------------------
+select * from alumnos where nombre like  '%i%'
+-------------------------------------------------------
+select * from alumnos where ide in (8,1,3);
+--------------------------------------------------------
+
+--------------------------------------------------------
+
