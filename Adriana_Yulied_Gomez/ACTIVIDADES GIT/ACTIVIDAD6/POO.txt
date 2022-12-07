@@ -1,0 +1,107 @@
+
+utilities
+package productos;
+
+import java.util.Scanner;
+
+public class Utilities {
+
+    public static String capturarDatos(String mensaje) {
+
+        System.out.println(mensaje);
+        Scanner teclado = new Scanner(System.in);
+       String respuesta = teclado.nextLine();
+       return respuesta;
+    }
+    public static void mostrarInformacion(String mensaje){
+        System.out.println(mensaje);
+
+    }
+    public static void calcularIva(int valor){
+
+      double iva=valor*0.19;
+        double total= iva + valor;
+      mostrarInformacion("El valor de iva es: "+iva +"\n el valor total: "+total);
+    }
+}
+
+----------------------------------------------------------------------------------------
+
+
+Main
+
+import productos.Utilities;
+import productos.Producto;
+
+public class Main {
+    public static void main(String[] args) {
+
+
+        Producto prod1 = new Producto();
+
+        prod1.setNombre(Utilities.capturarDatos("digite el Nombre del producto"));
+
+        prod1.setCategoria(Utilities.capturarDatos("Digite la categoria del producto"));
+
+        prod1.setPrecio(Integer.parseInt(Utilities.capturarDatos("digite el PRECIO del producto")));
+
+        Utilities.mostrarInformacion("Nombre de producto : " + prod1.getNombre());
+        Utilities.mostrarInformacion("Categoria: " + prod1.getCategoria());
+        Utilities.mostrarInformacion("Precio : " + prod1.getPrecio());
+        Utilities.calcularIva(prod1.getPrecio());
+
+
+    }
+
+}
+---------------------------------------------------------------------------------
+
+
+producto 
+
+
+package productos;
+
+public class Producto {
+
+   private String nombre;
+   private String categoria;
+    private int precio;
+
+
+    public Producto(String nombre,String categoria,int precio) {
+        this.nombre = nombre;
+        this.categoria=categoria;
+        this.precio=precio;
+    }
+
+    public Producto() {
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+}
+
+
+
