@@ -1,0 +1,44 @@
+Semana 5
+
+// Juan DAvid Henao
+package com.semillero.semillero.app.controller;
+
+
+package com.semillero.semillero.app.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.websocket.server.PathParam;
+
+@RestController
+@RequestMapping("/ejemplo")
+
+public class AsteriscoController {
+
+    @GetMapping("/mensaje")
+
+    public String encriptarPalabra(@PathParam("palabra") String palabra) {
+
+        if (palabra.length() > 2) {
+            String mensaje = "Palabra encriptada: " + palabra.charAt(0);
+
+            for (int i = 1; i < palabra.length() - 1; i++) {
+                if (Character.isLetter((palabra.charAt(i)))) {
+                    mensaje = mensaje + '*';
+                }
+            }
+            int posicion = 0;
+
+            posicion = palabra.length() - 1;
+            mensaje = mensaje + palabra.charAt(posicion);
+
+            return mensaje;
+
+        } else {
+            String mensaje = "NO ES POSIBLE ENCRIPTAR";
+            return mensaje;
+        }
+    }
+}
