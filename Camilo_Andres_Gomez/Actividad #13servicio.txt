@@ -1,0 +1,33 @@
+CAMILO GOMEZ
+
+
+@RestController
+@RequestMapping("/ejemplo")
+public class Servicio {
+
+    @GetMapping("/cadena")
+    public String getNumeros(@PathParam("palabra") String palabra){
+
+      String letra ="";
+
+
+        palabra=palabra.charAt(0)+palabra.substring(palabra.length()-1 );
+
+        for (int i=0;i<palabra.length();i++){
+            letra = letra + "*";
+        }
+
+
+        return palabra+letra;
+
+    }
+}
+-------------------------------------------------------------
+@SpringBootApplication
+public class SemilleroApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SemilleroApplication.class, args);
+	}
+
+}
