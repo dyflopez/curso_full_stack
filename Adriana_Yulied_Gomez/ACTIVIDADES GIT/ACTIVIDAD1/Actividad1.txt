@@ -1,0 +1,33 @@
+package aplicacion;
+
+import java.util.Scanner;
+
+public class Persona{
+    public static void main(String[] args) {
+
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Bienvenido a la Aplicacion JAVA");
+
+
+        int edad;
+        System.out.println("Ingrese su nombre");
+        String nombre = teclado.nextLine();
+        System.out.println("Ingrese su apellido");
+        String apellido = teclado.nextLine();
+        System.out.print("Ingrese su edad");
+        edad = teclado.nextInt();
+
+
+        if (edad > 17) {
+            System.out.println("Eres mayor de edad");
+            System.out.println("\n");
+            System.out.println("Imprimir desde  0 hasta la edad que tiene");
+            for (int i = 0; i <= edad; i++) {
+                System.out.println(i);
+            }
+        } else {
+            System.out.println("eres menor de edad");
+
+        }
+    }
+}

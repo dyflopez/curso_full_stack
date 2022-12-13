@@ -1,0 +1,47 @@
+import javax.swing.JOptionPane;
+public class Usuario {
+
+    static int MayMen[];
+    public static void main(String[] args)
+    {
+        int n;
+        n=Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de elementos a ingresar"));
+        MayMen=new int [n];
+        LeerVec();
+        Mayor();
+    }
+
+    public static void LeerVec(){
+        for (int i=0; i<=MayMen.length; i++){
+            MayMen[i]=Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el número "+i));
+
+        }
+    }
+
+    public static void Mayor(){
+        int i, May;
+        May=MayMen[0];
+
+        for (i=1; i<MayMen.length;i++){
+
+            if (MayMen[i] >= May){
+                May=MayMen[i];
+
+            }
+
+        }
+        JOptionPane.showMessageDialog(null, "Mayor: "+May);
+    }
+
+    public static void Menor(){
+        int i, Men;
+        Men=MayMen[0];
+        for (i=1; i<MayMen.length; i++){
+            if(MayMen[i] <= Men){
+                Men=MayMen[i];
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Menor: "+Men);
+    }
+
+}

@@ -1,0 +1,62 @@
+import java.util.*;
+public class Main {
+	
+static Scanner teclado = new Scanner(System.in);
+static int a, b, res = 0;
+
+public static void main(String[] args) {
+		
+	
+	     capturarDatos();  
+	      suma(a,b);
+	      resta(a,b);
+	      multiplicar(a,b);
+	      dividir(a,b);
+		       
+		    }
+		    
+		    public static void imprimir(){
+		      System.out.println("hola como estas me trae tinto"); 
+		        
+		    }
+		    
+		    public static void capturarDatos() {
+		    	System.out.println("Digite numero 1");
+		    	a = teclado.nextInt();
+		    	System.out.println("Digite numero 2");
+		    	b = teclado.nextInt();
+		    	
+		    }
+		    
+		    public static void suma(int a, int b){
+		      
+		      res = a + b;
+		      System.out.println(" La suma es: " + res);
+		        
+		   }
+		    
+		   public static void resta(int a, int b){
+			     
+			      res = a - b;
+			      System.out.println("La resta es: " + res);
+			        
+			   }
+		    
+		    public static void multiplicar(int a, int b){
+			     
+			      res = a * b;
+			      System.out.println("La multiplicación   es: " + res);
+			        
+			   }
+		    
+		    public static void dividir(int a, int b){
+			    
+			      res = a / b;
+			      System.out.println("La división  es: " + res);
+			        
+			   }
+		   
+		   
+ 	}
+
+

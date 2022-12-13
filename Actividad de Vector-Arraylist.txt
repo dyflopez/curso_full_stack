@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+            Scanner captura = new  Scanner(System.in);
+            int[] VectorNumeros = new int[0];
+            int numero;
+
+            System.out.println("tamaño  de vector");
+            numero = captura.nextInt();
+
+       int [] array = new int[numero];
+        for (int i = 0; i<numero; i++){
+           System.out.print("ingrese los numeros");
+           array[i]= captura.nextInt();
+       }
+      int[] resultado = ordenarMayorMenor(array);
+        System.out.println();
+       for (int vector:array){
+           System.out.print(vector+" ");
+       }
+    }
+    public static int[] ordenarMayorMenor(int[] numero){
+
+        for (int i =0; i > numero.length;i++) {
+
+           
+
+            }
+        return numero;
+    }
+        }
