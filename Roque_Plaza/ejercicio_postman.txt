@@ -1,0 +1,23 @@
+@GetMapping("/valor/{caracter}")
+    public int sumarCaracter(@PathParam("dato") int dato1,
+                             @PathVariable("caracter") int dato2) {
+        return iEjercicio.sumarCaracter(dato1, dato2);
+    }
+-------------------------------------------------------------
+ @Override
+    public int sumarCaracter(int dato1, int dato2) {
+
+        int dato = 0;
+
+        try {
+
+            dato = (dato1 + dato2);
+
+        } catch (Exception e) {
+            System.out.println("falló la suma, intente con otro número");
+
+        }
+        return dato;
+    }
+-----------------------------------------------
+ int sumarCaracter( int dato1, int dato2);
