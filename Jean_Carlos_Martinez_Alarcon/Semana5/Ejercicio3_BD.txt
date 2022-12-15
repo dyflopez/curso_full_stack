@@ -1,0 +1,91 @@
+create database agenciadeautos; 
+
+use agenciadeautos;
+
+create table vehiculos (
+id_vehiculo int NOT NULL auto_increment,
+placa text (10) NOT NULL, 
+marca text (25),
+linea text, 
+modelo int,
+PRIMARY KEY (id_vehiculo)
+COMMENT "Tabla para registrar vehiculos"
+);
+
+
+-- añadir datos -- 
+INSERT INTO vehiculos (id_vehiculo,placa,marca,linea,modelo)
+VALUES 
+ ('10', 'BFG000','Chevrolet','Onix','2010'),
+ ('11', 'ABC123','Renault', 'Oroch','2023'),
+ ('12', 'JCM123','Suzuki',  'Swift','2012'),
+ ('13', 'JCA321','kia',	'Picanto','2005'),
+ ('14', 'ENA521','Renault','Duster','2019'),
+ ('15', 'REN019','Renault','logan ','2000'),
+ ('16', 'REN200','Mazda','2','2022'),
+ ('17', 'FOR020','Ford','Raptor','2020'),
+ ('18', 'TOY021','Toyota','Hilux','2021'),
+ ('19', 'REN018','Renault','Stepway','2018');
+
+-------------------------------------------------------
+SELECT * FROM agenciadeautos.vehiculos;
+-------------------------------------------------------
+		-- Actualizar -- 
+UPDATE vehiculos
+Set id_vehiculo='01'
+where id_vehiculo=10;
+
+
+
+----------------------------------------------------------
+	-- Conteo -- 
+ Select
+ count(1)
+ from vehiculos;
+
+----------------------------------------------------------
+	-- Like Coincidencias/ conteo  -- 
+Select 
+count(1)
+ from vehiculos
+ where	marca	like "%a"; 
+ 
+ ----------------------------------------------------------
+Select
+ *
+ from vehiculos 
+ where id_vehiculo >=01 and
+  id_vehiculo	<=11;	
+  ----------------------------------------------------------
+ Select *
+ from id_vehiculo 
+ where id_vehiculo ='20';
+  
+  delete from vehiculos
+  where id_vehiculo=20;
+----------------------------------------------------------
+CREATE TABLE Motos(
+IdMotos int NOT NULL
+);
+
+ALTER TABLE Motos
+ADD Placa text (10) NOT NULL,
+ADD Marca text (25),
+ADD Modelo int,
+ADD Linea text;
+ALTER TABLE Motos
+DROP COLUMN Modelo;
+
+----------------------------------------------------------
+INSERT INTO Motos (IdMotos,Placa,Marca,linera)
+VALUES 
+ ('001', 'BFG00E','KTM','DUKE');
+ 
+ ALTER TABLE vehiculos
+RENAME COLUMN linera to Linea;
+ 
+ALTER TABLE Motos
+RENAME COLUMN Linea to linea;
+
+
+ TRUNCATE TABLE Motos;
