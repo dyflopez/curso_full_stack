@@ -1,0 +1,32 @@
+CREATE DATABASE Java_FullStack;
+USE Java_FullStack;
+CREATE TABLE personas(
+	id_persona int auto_increment not null,
+    cedula int not null,
+    nombre varchar(30) not null,
+    apellido varchar(30),
+    edad int not null,
+    ciudad_residencia varchar(50),
+    CONSTRAINT pk_id_alum PRIMARY KEY (id_persona)
+);
+
+INSERT INTO personas (cedula, nombre, apellido, edad, ciudad_residencia) VALUES (356985, 'Carlos', 'Cucaita', 69, 'Cali'),
+(78563254, 'Gustavo', 'Rojas', 53, 'Bogota'), (45145263, 'Rene', 'Rodriguez', 32, 'Villavicencio');
+
+SELECT * FROM personas;
+DELETE FROM personas;
+DROP TABLE personas;
+SET SQL_SAFE_UPDATES = 0;
+ALTER TABLE personas auto_increment=1;
+
+INSERT INTO personas (cedula, nombre, apellido, edad, ciudad_residencia) VALUES (356985, 'Carlos', 'Cucaita', 69, 'Cali'),
+(78563254, 'Gustavo', 'Rojas', 53, 'Bogota'), (45145263, 'Rene', 'Rodriguez', 32, 'Villavicencio'), (2556, 'Yuber', 'Alfonso', 37, 'Villa de Leyva'),
+ (2563458, 'Laura', 'Gomez', 27, 'Medellin'), (3562459, 'Xiomara', 'Guerrero', 19, 'Tunja'), (32563144, 'Camila', 'Aguilera', 25, 'Bogota'), 
+ (3256825, 'Jenn', 'Muriel', 39, 'Cucuta'), (98754123, 'Jules', 'Ochoa', 33, 'Houston'), (452365, 'Carolina','Gomez', 38, 'Cartagena'), 
+ (3256984, 'Valeria', 'Ospina', 18, 'Popayan'), (25669784, 'Karem','Suarez', 26, 'Bucaramanga'), (85501654, 'Nayra', 'Ortega', 21, 'Pereira'), 
+ (1325898, 'Diana', 'Hernandez', 26, 'Madrid'), (2546321, 'Karen', 'Velandia', 32, 'Medellin'), (5684457, 'Katherin', 'Suaza', 43, 'Santa Marta'), 
+ (3568974, 'Levy', 'Rincon', 37, 'Popayan'), (4587962, 'Valentina', 'Londoño', 23, 'Yopal'), (254854, 'Laura', 'Rodriguez', 32, 'Valledupar'),
+ (3256845, 'Oscar', 'Marin', 47, 'Neiva'), (2568456, 'Abril', 'Schreiber', 27, 'Caracas'), (3254136, 'Ernesto', 'Urrego', 42, 'Florencia'), 
+ (2547896, 'Rafael', 'Cubero', 73, 'Monteria'), (6893521, 'Dulce','Alarcon', 33, 'Pasto'), (90021172, 'Leonor', 'Quiroga', 26, 'Mocoa'), 
+ (562358, 'Emma', 'Carrillo', 25, 'Sincelejo'), (6589635, 'Nina', 'Saez', 45, 'Mitu'), (45454654, 'Michelle', 'Vivas', 22, 'Elk Point'), 
+ (56897452, 'Isidro', 'Molina', 32, 'Embrun'), (112125451, 'Roque', 'Lorenzo', 27, 'Lachine');
